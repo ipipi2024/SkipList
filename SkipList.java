@@ -19,15 +19,23 @@ public class SkipList {
     }
 
     public Node search(int key) {
-        // we want to return the node with key which is is floor of key
-        // i.e. less than or equal to key
         Node current = head;
+        
+        // Traverse down through levels
         while (current.below != null) {
+            // Move right as far as possible on current level
             while (current.next.key <= key) {
                 current = current.next;
             }
+            // Move down to next level
             current = current.below;
         }
+        
+        // At the bottom level, continue moving right until we find the insertion point
+        while (current.next != null && current.next.key <= key) {
+            current = current.next;
+        }
+        
         return current;
     }
 
@@ -142,4 +150,18 @@ public class SkipList {
         return true;
     }
 
+    public void printSkipList() {
+        // Find the bottom-most head node
+        Node currentNode = head;
+        while (currentNode.below != null) {
+            currentNode = currentNode.below;
+        }
+        
+        // Traverse horizontally and print all keys
+        while (currentNode != null) {
+            System.out.print(currentNode.key + " ");
+            currentNode = currentNode.next;
+        }
+        System.out.println(); // Add a newline at the end
+    }
 }
