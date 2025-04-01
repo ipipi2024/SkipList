@@ -81,8 +81,8 @@ public class SkipList {
         Node currentNode2 = currentNode;
 
         // adjust left pointers
-        while (currentNode1 != null) {
-            if (currentNode1.prev == head && currentNode.prev.above == null) {
+        while (currentNode1 != null && currentNode1.prev != null) {
+            if (currentNode1.prev == head && currentNode1.prev.above == null) {
                 // increase height by adjusting head node
                 Node newHead = new Node(NEG_INFINITY);
                 newHead.below = head;
@@ -101,7 +101,7 @@ public class SkipList {
             currentNode1 = currentNode1.prev;
         }
 
-        while (currentNode2 != null) {
+        while (currentNode2 != null  && currentNode2.next != null) {
             if (currentNode2.next == tail && currentNode2.next.above == null) {
                 // increase height by adjusting tail node
                 Node newTail = new Node(POS_INFINITY);

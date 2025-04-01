@@ -8,6 +8,11 @@ public class Main {
         skipList.insert(14);
         skipList.insert(2);
         
+        System.out.println("AFter insert:");
+        skipList.printSkipList();
+        skipList.delete(3);
+        
+        System.out.println("After delete: ");
         skipList.printSkipList();
     }
 }
